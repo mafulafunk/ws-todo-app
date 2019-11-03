@@ -1,18 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { SSL_OP_EPHEMERAL_RSA } from 'constants';
 
-
-const Todo = props => (
-    <tr>
-        <td>{props.todo.todo_description}</td>
-        <td>{props.todo.todo_responsible}</td>
-        <td>{props.todo.todo_priority}</td>
-        <td>
-            <Link to={"/edit/"+props.todo._id}>Edit</Link>
-        </td>
-    </tr>
-)
 
 export default class EditTodo extends Component {
     constructor(props) {
@@ -70,6 +59,7 @@ export default class EditTodo extends Component {
             todo_completed: !this.state.todo_completed
         });
     }
+
     onSubmit(e) {
         e.preventDefault();
         const obj = {
@@ -83,6 +73,7 @@ export default class EditTodo extends Component {
             .then(res => console.log(res.data));
         
         this.props.history.push('/');
+        this.props.history.go();
     }
 
     render() {

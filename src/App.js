@@ -15,7 +15,7 @@ class App extends Component {
       <Router>
         <div className="container">
           <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="https://github.com/mafulafunk/ws-todo-app" target="_blank">
+            <a class="navbar-brand" href="https://github.com/mafulafunk/ws-todo-app" target="_blank" rel="noopener noreferrer">
               <img src={logo} width="30" height="30" alt="CodingTheSmartWay.com" />
             </a>
             <Link to="/" className="navbar-brand">WS Todo App</Link>

@@ -53,6 +53,9 @@ class App extends Component {
             <Switch>
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
             </Switch>
+            <Route path="/todo" exact component={TodosList} />
+            <Route path="/todo/edit/:id" component={EditTodo} />
+            <Route path="/todo/create" component={CreateTodo} />
           </div>
         </Router>
       </Provider>

@@ -64,8 +64,10 @@ export default class CreateTodo extends Component {
 
     render() {
         return (
-            <div style={{marginTop: 10}}>
-                <h3>Create New Todo</h3>
+            <div className="container">
+            <div className="row">
+              <div className="col s8 offset-s2">
+                    <h3>Create New Todo</h3>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group"> 
                         <label>Description: </label>
@@ -84,9 +86,10 @@ export default class CreateTodo extends Component {
                                 onChange={this.onChangeTodoResponsible}
                                 />
                     </div>
-                    <div className="form-group">
-                        <div className="form-check form-check-inline">
-                            <input  className="form-check-input" 
+                    <div className="form-field">
+                        <p>
+                        <label>
+                            <input type="radio" 
                                     type="radio" 
                                     name="priorityOptions" 
                                     id="priorityLow" 
@@ -94,10 +97,12 @@ export default class CreateTodo extends Component {
                                     checked={this.state.todo_priority==='Low'} 
                                     onChange={this.onChangeTodoPriority}
                                     />
-                            <label className="form-check-label">Low</label>
-                        </div>
-                        <div className="form-check form-check-inline">
-                            <input  className="form-check-input" 
+                            <span>Low</span>
+                        </label>
+                        </p>
+                        <p>
+                            <label>
+                            <input type="radio" 
                                     type="radio" 
                                     name="priorityOptions" 
                                     id="priorityMedium" 
@@ -105,25 +110,31 @@ export default class CreateTodo extends Component {
                                     checked={this.state.todo_priority==='Medium'} 
                                     onChange={this.onChangeTodoPriority}
                                     />
-                            <label className="form-check-label">Medium</label>
-                        </div>
-                        <div className="form-check form-check-inline">
-                            <input  className="form-check-input" 
-                                    type="radio" 
+                            <span>Medium</span>
+                        </label>
+                        </p>
+                        <p>
+                        <label>
+                            <input type="radio" 
                                     name="priorityOptions" 
                                     id="priorityHigh" 
                                     value="High" 
                                     checked={this.state.todo_priority==='High'} 
                                     onChange={this.onChangeTodoPriority}
                                     />
-                            <label className="form-check-label">High</label>
-                        </div>
+                            <span>High</span>
+                        </label>
+                        </p>
                     </div>
 
-                    <div className="form-group">
-                        <input type="submit" value="Create Todo" className="btn btn-primary" />
+                    <div className="col s12" style={{ paddingLeft: "11.250px" }}>
+                        <button class="btn btn-large waves-effect waves-light hoverable blue accent-3" type="submit" name="action">Submit
+                            <i class="material-icons right">send</i>
+                        </button>
                     </div>
                 </form>
+                </div>
+                </div>
             </div>
         )
     }

@@ -72,7 +72,7 @@ export default class EditTodo extends Component {
         axios.post('http://localhost:4000/todos/update/'+this.props.match.params.id, obj)
             .then(res => console.log(res.data));
         
-        this.props.history.push('/');
+        this.props.history.push('/todo');
         this.props.history.go();
     }
 

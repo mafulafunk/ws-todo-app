@@ -1,5 +1,5 @@
 # Use root/example as user/password credentials
-version: '3.7'
+version: '3.1'
 
 services:
 
@@ -11,6 +11,7 @@ services:
 
   ws-backend:
     image: ws-backend
+    image: "registry.gitlab.com/eigenfunk/ws-backend/master"
     restart: always
     depends_on:
       - mongo

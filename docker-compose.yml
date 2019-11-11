@@ -1,0 +1,35 @@
+# Use root/example as user/password credentials
+version: '3.7'
+
+services:
+
+  mongo:
+    image: mongo:4
+    ports:
+      - "27017:27017"            
+    restart: always
+
+  ws-backend:
+    image: ws-backend
+    restart: always
+    depends_on:
+      - mongo
+    ports:
+      - "4000:4000"
+
+  ws-auth:
+    image: ws-auth
+    restart: always
+    depends_on:
+      - mongo
+    ports:
+      - "5000:5000"
+
+  ws-todo-app:
+    image: ws-todo-app
+    restart: always
+    depends_on:
+      - ws-auth
+      - ws-backend
+    ports:
+      - "3000:3000"

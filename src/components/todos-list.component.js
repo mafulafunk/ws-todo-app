@@ -22,7 +22,7 @@ export default class TodosList extends Component {
     }
     
     componentDidMount() {
-        axios.get('http://localhost:4000/todos/')
+        axios.get('http://192.168.99.100:4000/todos/')
             .then(response => {
                 this.setState({ todos: response.data });
             })

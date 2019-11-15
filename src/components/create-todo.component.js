@@ -51,7 +51,7 @@ export default class CreateTodo extends Component {
             todo_completed: this.state.todo_completed
         };
 
-        axios.post('http://192.168.99.100:4000/todos/add', newTodo)
+        axios.post('http://localhost:4000/todos/add', newTodo)
             .then(res => console.log(res.data));
 
         this.setState({
@@ -89,7 +89,7 @@ export default class CreateTodo extends Component {
                             <div className="form-field">
                                 <p>
                                     <label>
-                                        <input type="radio"
+                                        <input
                                             type="radio"
                                             name="priorityOptions"
                                             id="priorityLow"
@@ -102,7 +102,7 @@ export default class CreateTodo extends Component {
                                 </p>
                                 <p>
                                     <label>
-                                        <input type="radio"
+                                        <input
                                             type="radio"
                                             name="priorityOptions"
                                             id="priorityMedium"
@@ -115,7 +115,8 @@ export default class CreateTodo extends Component {
                                 </p>
                                 <p>
                                     <label>
-                                        <input type="radio"
+                                        <input
+                                            type="radio"
                                             name="priorityOptions"
                                             id="priorityHigh"
                                             value="High"

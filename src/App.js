@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
 import { setCurrentUser, logoutUser } from "./actions/authActions";
@@ -14,7 +14,6 @@ import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import PrivateRoute from "./components/private-route/PrivateRoute";
 import Dashboard from "./components/dashboard/Dashboard";
-import logo from "./logo.svg";
 
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
@@ -45,9 +44,7 @@ class App extends Component {
             <Route exact path="/" component={Landing} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
-            <Switch>
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
-            </Switch>
             <Route path="/todo" exact component={TodosList} />
             <Route path="/todo/edit/:id" component={EditTodo} />
             <Route path="/todo/create" component={CreateTodo} />

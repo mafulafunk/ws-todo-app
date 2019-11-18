@@ -12,7 +12,6 @@ import Navbar from "./components/layout/Navbar";
 import Landing from "./components/layout/Landing";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
-import PrivateRoute from "./components/private-route/PrivateRoute";
 import Dashboard from "./components/dashboard/Dashboard";
 
 // Check for token to keep user logged in
@@ -44,10 +43,10 @@ class App extends Component {
             <Route exact path="/" component={Landing} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
-              <PrivateRoute exact path="/dashboard" component={Dashboard} />
-            <Route path="/todo" exact component={TodosList} />
+            <Route path="/" component={Dashboard} />
+            <Route path="/" component={TodosList} />
             <Route path="/todo/edit/:id" component={EditTodo} />
-            <Route path="/todo/create" component={CreateTodo} />
+            <Route path="/todo_create" component={CreateTodo} />
           </div>
         </Router>
       </Provider>

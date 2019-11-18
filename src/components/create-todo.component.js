@@ -129,7 +129,7 @@ export default class CreateTodo extends Component {
                             </div>
 
                             <div className="col s12" style={{ paddingLeft: "11.250px" }}>
-                                <button class="btn btn-large waves-effect waves-light hoverable blue accent-3" type="submit" name="action">Submit
+                                <button class="btn btn-large waves-effect waves-light hoverable accent-3" type="submit" name="action">Submit
                             <i class="material-icons right">send</i>
                                 </button>
                             </div>

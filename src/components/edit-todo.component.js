@@ -21,7 +21,7 @@ export default class EditTodo extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:4000/todos/'+this.props.match.params.id)
+        axios.get('http://localhost:4000/todos/' + this.props.match.params.id)
             .then(response => {
                 this.setState({
                     todo_description: response.data.todo_description,
@@ -68,7 +68,7 @@ export default class EditTodo extends Component {
             todo_completed: this.state.todo_completed
         };
         console.log(obj);
-        axios.post('http://localhost:4000/todos/update/'+this.props.match.params.id, obj)
+        axios.post('http://localhost:4000/todos/update/' + this.props.match.params.id, obj)
             .then(res => console.log(res.data));
 
         this.props.history.push('/todo');
@@ -97,62 +97,67 @@ export default class EditTodo extends Component {
                             onChange={this.onChangeTodoResponsible}
                         />
                     </div>
-                    <div className="form-group">
-                        <div className="form-check form-check-inline">
-                            <input className="form-check-input"
-                                type="radio"
-                                name="priorityOptions"
-                                id="priorityLow"
-                                value="Low"
-                                checked={this.state.todo_priority === 'Low'}
-                                onChange={this.onChangeTodoPriority}
-                            />
-                            <label className="form-check-label">Low</label>
-                        </div>
-                        <div className="form-check form-check-inline">
-                            <input className="form-check-input"
-                                type="radio"
-                                name="priorityOptions"
-                                id="priorityMedium"
-                                value="Medium"
-                                checked={this.state.todo_priority === 'Medium'}
-                                onChange={this.onChangeTodoPriority}
-                            />
-                            <label className="form-check-label">Medium</label>
-                        </div>
-                        <div className="form-check form-check-inline">
-                            <input className="form-check-input"
-                                type="radio"
-                                name="priorityOptions"
-                                id="priorityHigh"
-                                value="High"
-                                checked={this.state.todo_priority === 'High'}
-                                onChange={this.onChangeTodoPriority}
-                            />
-                            <label className="form-check-label">High</label>
-                        </div>
-                    </div>
-                    <div className="form-check">
-                        <input className="form-check-input"
-                            id="completedCheckbox"
-                            type="checkbox"
-                            name="completedCheckbox"
-                            onChange={this.onChangeTodoCompleted}
-                            checked={this.state.todo_completed}
-                            value={this.state.todo_completed}
-                        />
-                        <label className="form-check-label" htmlFor="completedCheckbox">
-                            Completed
-                        </label>
-                    </div>
+                    <div className="form-field">
+                        <p>
+                            <label>
+                                <input
+                                    type="radio"
+                                    name="priorityOptions"
+                                    id="priorityLow"
+                                    value="Low"
+                                    checked={this.state.todo_priority === 'Low'}
+                                    onChange={this.onChangeTodoPriority}
+                                />
+                                <span>Low</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input
+                                    type="radio"
+                                    name="priorityOptions"
+                                    id="priorityMedium"
+                                    value="Medium"
+                                    checked={this.state.todo_priority === 'Medium'}
+                                    onChange={this.onChangeTodoPriority}
+                                />
+                                <span>Medium</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input
+                                    type="radio"
+                                    name="priorityOptions"
+                                    id="priorityHigh"
+                                    value="High"
+                                    checked={this.state.todo_priority === 'High'}
+                                    onChange={this.onChangeTodoPriority}
+                                />
+                                <span>High</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    name="completedOptions"
+                                    id="completedCheckbox"
+                                    value={this.state.todo_completed}
+                                    checked={this.state.todo_completed}
+                                    onChange={this.onChangeTodoCompleted}
+                                />
+                                <span>Completed</span>
+                            </label>
+                        </p>
+                    </div>               
+                <br />
 
-                    <br />
-
-                    <div className="form-group">
-                        <input type="submit" value="Update Todo" className="btn btn-primary" />
-                    </div>
+                <div className="form-group">
+                    <input type="submit" value="Update Todo" className="btn btn-large waves-effect waves-light hoverable accent-3" />
+                </div>
                 </form>
-            </div>
+            </div >
         )
     }
 }

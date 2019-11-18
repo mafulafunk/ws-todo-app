@@ -13,7 +13,7 @@ services:
 
   ws-backend:
     image: ws-backend
-    image: "registry.gitlab.com/eigenfunk/ws-backend/master"
+    # image: "registry.gitlab.com/eigenfunk/ws-backend/master"
     restart: always
     depends_on:
       - mongo

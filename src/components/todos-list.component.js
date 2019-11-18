@@ -8,29 +8,32 @@ const Todo = props => (
         <td className={props.todo.todo_completed ? 'completed' : ''}>{props.todo.todo_responsible}</td>
         <td className={props.todo.todo_completed ? 'completed' : ''}>{props.todo.todo_priority}</td>
         <td>
-            <Link to={"/todo/edit/"+props.todo._id}>Edit</Link>
+            <Link to={"/todo/edit/" + props.todo._id}>Edit</Link>
         </td>
     </tr>
 )
 
 
 export default class TodosList extends Component {
-    
+
     constructor(props) {
         super(props);
-        this.state = {todos: []};
+        this.state = { todos: [] };
     }
-    
+
     componentDidMount() {
-        axios.get('http://localhost:4000/todos/')
+        axios.defaults.headers.common['Authorization'] =
+        localStorage.getItem('jwtToken');
+        axios.get('http://localhost:4000/todos/',
+        )
             .then(response => {
                 this.setState({ todos: response.data });
             })
-            .catch(function (error){
+            .catch(function (error) {
                 console.log(error);
             })
     }
-    
+
     render() {
         return (
             <div>
@@ -45,7 +48,7 @@ export default class TodosList extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        { this.todoList() }
+                        {this.todoList()}
                     </tbody>
                 </table>
             </div>
@@ -53,7 +56,7 @@ export default class TodosList extends Component {
     }
 
     todoList() {
-        return this.state.todos.map(function(currentTodo, i){
+        return this.state.todos.map(function (currentTodo, i) {
             return <Todo todo={currentTodo} key={i} />;
         })
     }

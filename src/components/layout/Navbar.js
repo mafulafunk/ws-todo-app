@@ -49,6 +49,7 @@ class Navbar extends Component {
               </li>
               <li>
                 <Link
+                  to="/"
                   className="waves-effect hoverable black-text"
                   onClick={this.onLogoutClick}>
                   Logout

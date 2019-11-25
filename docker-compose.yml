@@ -6,7 +6,7 @@ services:
   mongo:
     image: mongo:4
     ports:
-      - "27017:27017"            
+      - "127.0.0.1:27017:27017"            
     volumes:
       - ~/data/mongodb-docker-todo-app:/data/db
     restart: always

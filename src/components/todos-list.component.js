@@ -23,7 +23,7 @@ export default class TodosList extends Component {
 
     componentDidMount() {
         axios.defaults.headers.common['Authorization'] =
-        localStorage.getItem('jwtToken');
+        localStorage.jwtToken;
         axios.get('http://localhost:4000/todos/',
         )
             .then(response => {

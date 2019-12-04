@@ -1,19 +1,18 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { logoutUser } from "../../actions/authActions";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { logoutUser } from '../../actions/authActions';
 class Dashboard extends Component {
-
   constructor(props) {
     super(props);
-    this.state = { validFor: null };
-  } 
-  
+    this.state = {
+      validFor: null,
+      stillValid: 'false'
+    };
+  }
+
   componentDidMount() {
-    this.timerID = setInterval(
-      () => this.tick(),
-      1000
-    );
+    this.timerID = setInterval(() => this.tick(), 1000);
   }
 
   componentWillUnmount() {
@@ -23,8 +22,10 @@ class Dashboard extends Component {
   tick() {
     const { user } = this.props.auth;
     if (user) {
+      const validInSecs = Math.trunc(user.exp - Date.now() / 1000);
       this.setState({
-        validFor: Math.trunc(user.exp - (Date.now() / 1000))
+        validFor: validInSecs,
+        stillValid: validInSecs > 0 ? 'true' : 'false'
       });
     }
   }
@@ -37,19 +38,23 @@ class Dashboard extends Component {
   render() {
     const { user } = this.props.auth;
     return (
-      <div style={{ height: "75vh" }} className="container">
-        <div className="row">
-          <div className="col s12 center-align">
-            <div>
-              <b>This is the dashboard.</b>
-              <p>*{this.props.auth.user.id}*</p>
-              <p>*{this.props.auth.user.name}*</p>
-              <p>*{this.props.auth.user.myPayload}*</p>
-              <p>*{this.props.auth.user.iat}*</p>
-              <p>*{this.props.auth.user.exp}*</p>
-              <p>*{this.state.validFor}*</p>
-            </div>
-          </div>
+      <div>
+        <h3>This is the dashboard.</h3>
+        <div className='row'>
+          <div className='col s6'>*user.id*</div>
+          <div className='col s6'>::{user.id}</div>
+          <div className='col s6'>*user.name*</div>
+          <div className='col s6'>::{user.name}</div>
+          <div className='col s6'>*user.myPayload*</div>
+          <div className='col s6'>::{user.myPayload}</div>
+          <div className='col s6'>*user.iat*</div>
+          <div className='col s6'>::{user.iat}</div>
+          <div className='col s6'>*user.exp*</div>
+          <div className='col s6'>::{user.exp}</div>
+          <div className='col s6'>*validFor*</div>
+          <div className='col s6'>::{this.state.validFor}</div>
+          <div className='col s6'>*token.stillValid*</div>
+          <div className='col s6'>::{this.state.stillValid}</div>
         </div>
       </div>
     );
@@ -66,7 +71,4 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = { logoutUser };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Dashboard);
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

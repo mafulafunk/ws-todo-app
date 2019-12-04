@@ -2,27 +2,47 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-const Todo = props => (
-  <tr>
-    <td className={props.todo.todo_completed ? 'completed' : ''}>
-      {props.todo.todo_description}
-    </td>
-    <td className={props.todo.todo_completed ? 'completed' : ''}>
-      {props.todo.todo_responsible}
-    </td>
-    <td className={props.todo.todo_completed ? 'completed' : ''}>
-      {props.todo.todo_priority}
-    </td>
-    <td>
-      <Link to={'/todo/edit/' + props.todo._id}>
-        <i className='material-icons'>edit</i>
-      </Link>
-      <Link to={'/todo/edit/' + props.todo._id}>
-        <i className='material-icons'>delete_forever</i>
-      </Link>
-    </td>
-  </tr>
-);
+class Todo extends Component {
+  constructor(props) {
+    super(props);
+    this.onClickDelete = this.onClickDelete.bind(this);
+  }
+
+  onClickDelete(e) {
+    console.log(this.props.todo._id);
+    axios
+      .delete('http://localhost:4000/todos/' + this.props.todo._id)
+      .then(res => {
+        console.log(res.data);
+      });
+  }
+
+  render() {
+    return (
+      <tr>
+        <td className={this.props.todo.todo_completed ? 'completed' : ''}>
+          {this.props.todo.todo_description}
+        </td>
+        <td className={this.props.todo.todo_completed ? 'completed' : ''}>
+          {this.props.todo.todo_responsible}
+        </td>
+        <td className={this.props.todo.todo_completed ? 'completed' : ''}>
+          {this.props.todo.todo_priority}
+        </td>
+        <td>
+          <Link to={'/todo/edit/' + this.props.todo._id}>
+            <i className='material-icons'>edit</i>
+          </Link>
+          <Link to='/'>
+            <i className='material-icons' onClick={this.onClickDelete}>
+              delete_forever
+            </i>
+          </Link>
+        </td>
+      </tr>
+    );
+  }
+}
 
 export default class TodosList extends Component {
   constructor(props) {

@@ -5,6 +5,8 @@ import ToDo from './todos/ToDo';
 export default class TodosList extends Component {
   constructor(props) {
     super(props);
+    this.onDeleteToDo = this.onDeleteToDo.bind(this);
+    this.todoList = this.todoList.bind(this);
     this.state = { todos: [], httpState: 0 };
   }
 
@@ -21,6 +23,18 @@ export default class TodosList extends Component {
         console.log(error);
         console.log(error);
       });
+  }
+
+  onDeleteToDo(currentToDo) {
+    axios.delete('http://localhost:4000/todos/' + currentToDo._id).then(res => {
+      console.log(res.data);
+      const myToDos = [...this.state.todos];
+      const index = myToDos.indexOf[currentToDo];
+      if (index !== -1) {
+        myToDos.splice(index, 1);
+        this.setState({ todos: myToDos });
+      }
+    });
   }
 
   render() {
@@ -46,8 +60,11 @@ export default class TodosList extends Component {
   }
 
   todoList() {
+    const that = this;
     return this.state.todos.map(function(currentTodo, i) {
-      return <ToDo todo={currentTodo} key={i} />;
+      return (
+        <ToDo todo={currentTodo} key={i} onDeleteToDo={that.onDeleteToDo} />
+      );
     });
   }
 }

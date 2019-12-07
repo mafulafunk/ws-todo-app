@@ -5,13 +5,11 @@ import axios from 'axios';
 function ToDo(props) {
   function onClickDelete(e) {
     console.log(props.todo._id);
-    axios.delete('http://localhost:4000/todos/' + props.todo._id).then(res => {
-      console.log(res.data);
-    });
+    props.onDeleteToDo(props.todo);
   }
 
   return (
-    <tr>
+    <tr key='props.key'>
       <td className={props.todo.todo_completed ? 'completed' : ''}>
         {props.todo.todo_description}
       </td>

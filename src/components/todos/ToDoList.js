@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import ToDo from './todos/ToDo';
+import ToDo from './ToDo';
 
 function TodosList(props) {
   const [todos, setTodos] = useState([]);

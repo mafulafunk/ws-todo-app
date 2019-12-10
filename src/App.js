@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import store from './store';
 import CreateTodo from './components/create-todo.component';
 import EditTodo from './components/edit-todo.component';
-import TodosList from './components/todos-list.component';
+import TodosList from './components/todos/ToDoList';
 import Navbar from './components/layout/Navbar';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';

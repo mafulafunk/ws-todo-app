@@ -10,8 +10,20 @@
       content="Web site created using create-react-app"
     />
     <link rel="apple-touch-icon" href="logo192.png" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <script type="xing/login">
+      {
+        "consumer_key": "f76f3b24a142398fb2df"
+      }
+    </script>
+
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
@@ -41,6 +53,17 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+      (function(d) {
+        var js,
+          id = 'lwx';
+        if (d.getElementById(id)) return;
+        js = d.createElement('script');
+        js.id = id;
+        js.src = 'https://www.xing-share.com/plugins/login.js';
+        d.getElementsByTagName('head')[0].appendChild(js);
+      })(document);
+    </script>
   </body>
 </html>

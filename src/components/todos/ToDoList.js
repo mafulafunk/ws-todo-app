@@ -5,33 +5,34 @@ import ToDo from './ToDo';
 function TodosList(props) {
   const [todos, setTodos] = useState([]);
   const [httpState, sethttpState] = useState(0);
+  const [reloadSwitch, setReloadSwitch] = useState(true);
 
   useEffect(() => {
     axios.defaults.headers.common['Authorization'] = localStorage.jwtToken;
-    axios
-      .get('http://localhost:4000/todos/')
-      .then(response => {
+    async function fetchData() {
+      try {
+        const response = await axios.get('http://localhost:4000/todos/');
         setTodos(response.data);
         sethttpState(response.status);
         console.log('Status :' + response.status);
-      })
-      .catch(error => {
+      } catch (error) {
         sethttpState(error.response.status);
         console.log(error);
-        console.log(error);
-      });
-  });
-
-  function onDeleteToDo(currentToDo) {
-    axios.delete('http://localhost:4000/todos/' + currentToDo._id).then(res => {
-      console.log(res.data);
-      const myToDos = [...todos];
-      const index = myToDos.indexOf[currentToDo];
-      if (index !== -1) {
-        myToDos.splice(index, 1);
-        setTodos(myToDos);
       }
-    });
+    }
+    fetchData();
+  }, [reloadSwitch]);
+
+  async function onDeleteToDo(currentToDo) {
+    try {
+      const res = await axios.delete(
+        'http://localhost:4000/todos/' + currentToDo._id
+      );
+      console.log(res.data);
+      setReloadSwitch(!reloadSwitch);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   function todoList() {

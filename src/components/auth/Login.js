@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { loginUser } from '../../actions/authActions';
 import classnames from 'classnames';
 
+//ToDo: change to function
 class Login extends Component {
   constructor() {
     super();

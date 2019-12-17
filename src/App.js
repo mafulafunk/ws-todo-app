@@ -28,6 +28,7 @@ if (localStorage.jwtToken) {
   //   }
 }
 
+//ToDo: change to function????
 class App extends Component {
   render() {
     return (

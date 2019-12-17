@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { deleteToDo } from '../../actions/todoListActions';
 
 function ToDo(props) {
   function onClickDelete(e) {
     console.log(props.todo._id);
-    props.onDeleteToDo(props.todo);
+    props.deleteToDo(props.todo);
   }
 
   return (
@@ -32,4 +34,6 @@ function ToDo(props) {
   );
 }
 
-export default ToDo;
+const mapDispatchToProps = { deleteToDo };
+
+export default connect(null, mapDispatchToProps)(ToDo);

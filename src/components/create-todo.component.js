@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+//ToDo: change to function
 export default class CreateTodo extends Component {
   constructor(props) {
     super(props);

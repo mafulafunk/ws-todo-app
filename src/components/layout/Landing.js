@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+
+//ToDo: change to function
 class Landing extends Component {
   render() {
     return (

@@ -1,33 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import ToDo from './ToDo';
 import { connect } from 'react-redux';
 import { getToDoList } from '../../actions/todoListActions';
 
 function TodosList({ getToDoList, todos }) {
   const [httpState] = useState(0);
-  const [reloadSwitch, setReloadSwitch] = useState(true);
 
   useEffect(() => {
     getToDoList();
-  }, [getToDoList]);
-
-  async function onDeleteToDo(currentToDo) {
-    try {
-      const res = await axios.delete(
-        'http://localhost:4000/todos/' + currentToDo._id
-      );
-      console.log(res.data);
-      getToDoList();
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  }, [getToDoList, todos]);
 
   function todoList() {
-    console.log('foo :' + todos);
     return todos.map(function(currentTodo, i) {
-      return <ToDo todo={currentTodo} key={i} onDeleteToDo={onDeleteToDo} />;
+      return <ToDo todo={currentTodo} key={i} />;
     });
   }
 

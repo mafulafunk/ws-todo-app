@@ -16,6 +16,22 @@ export const getToDoList = () => dispatch => {
   fetchData();
 };
 
+export const deleteToDo = currentToDo => dispatch => {
+  axios.defaults.headers.common['Authorization'] = localStorage.jwtToken;
+  async function deleteIt() {
+    try {
+      const res = await axios.delete(
+        'http://localhost:4000/todos/' + currentToDo._id
+      );
+      console.log(res.data);
+      getToDoList();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  deleteIt();
+};
+
 export const setToDoList = decoded => {
   return {
     type: SET_TODO_LIST,

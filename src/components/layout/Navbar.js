@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { logoutUser } from '../../actions/authActions';
 
+//ToDo: change to function
 class Navbar extends Component {
   onLogoutClick = e => {
     this.props.logoutUser();

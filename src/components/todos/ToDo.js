@@ -7,6 +7,7 @@ function ToDo(props) {
   function onClickDelete(e) {
     console.log(props.todo._id);
     props.deleteToDo(props.todo);
+    props.getToDoList();
   }
 
   return (

@@ -1,13 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import ToDo from './ToDo';
 import { connect } from 'react-redux';
-import { getToDoList } from '../../actions/todoListActions';
 
 function TodosList({ getToDoList, todos, httpState }) {
-  useEffect(() => {
-    getToDoList();
-  }, [getToDoList]);
-
   function todoList() {
     return todos.map(function(currentTodo, i) {
       return <ToDo todo={currentTodo} key={i} />;
@@ -38,6 +33,6 @@ const mapStateToProps = state => ({
   httpState: state.todos.httpState
 });
 
-const mapDispatchToProps = { getToDoList };
+const mapDispatchToProps = {};
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodosList);

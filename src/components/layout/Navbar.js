@@ -3,11 +3,17 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { logoutUser } from '../../actions/authActions';
+import { getToDoList } from '../../actions/todoListActions';
 
 //ToDo: change to function
 class Navbar extends Component {
   onLogoutClick = e => {
     this.props.logoutUser();
+    this.props.getToDoList();
+  };
+
+  getToDoList = e => {
+    this.props.getToDoList();
   };
 
   render() {
@@ -21,6 +27,7 @@ class Navbar extends Component {
                 fontFamily: 'monospace'
               }}
               className='brand-logo black-text'
+              onClick={this.getToDoList}
             >
               <i className='material-icons'>cloud</i>
               WS-TODO
@@ -70,6 +77,6 @@ Navbar.propTypes = {
 
 const mapStateToProps = null;
 
-const mapDispatchToProps = { logoutUser };
+const mapDispatchToProps = { logoutUser, getToDoList };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

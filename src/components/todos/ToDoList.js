@@ -1,27 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ToDo from './ToDo';
+import { connect } from 'react-redux';
+import { getToDoList } from '../../actions/todoListActions';
 
-function TodosList(props) {
-  const [todos, setTodos] = useState([]);
-  const [httpState, sethttpState] = useState(0);
+function TodosList({ getToDoList, todos }) {
+  const [httpState] = useState(0);
   const [reloadSwitch, setReloadSwitch] = useState(true);
 
   useEffect(() => {
-    axios.defaults.headers.common['Authorization'] = localStorage.jwtToken;
-    async function fetchData() {
-      try {
-        const response = await axios.get('http://localhost:4000/todos/');
-        setTodos(response.data);
-        sethttpState(response.status);
-        console.log('Status :' + response.status);
-      } catch (error) {
-        sethttpState(error.response.status);
-        console.log(error);
-      }
-    }
-    fetchData();
-  }, [reloadSwitch]);
+    getToDoList();
+  }, [getToDoList]);
 
   async function onDeleteToDo(currentToDo) {
     try {
@@ -29,13 +18,14 @@ function TodosList(props) {
         'http://localhost:4000/todos/' + currentToDo._id
       );
       console.log(res.data);
-      setReloadSwitch(!reloadSwitch);
+      getToDoList();
     } catch (error) {
       console.log(error);
     }
   }
 
   function todoList() {
+    console.log('foo :' + todos);
     return todos.map(function(currentTodo, i) {
       return <ToDo todo={currentTodo} key={i} onDeleteToDo={onDeleteToDo} />;
     });
@@ -60,4 +50,10 @@ function TodosList(props) {
   );
 }
 
-export default TodosList;
+const mapStateToProps = state => ({
+  todos: state.todos.list
+});
+
+const mapDispatchToProps = { getToDoList };
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodosList);

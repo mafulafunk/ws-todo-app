@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SET_TODO_LIST } from './types';
+import { SET_TODO_LIST, SET_HTTP_STATE } from './types';
 
 export const getToDoList = () => dispatch => {
   axios.defaults.headers.common['Authorization'] = localStorage.jwtToken;
@@ -7,10 +7,11 @@ export const getToDoList = () => dispatch => {
     try {
       const response = await axios.get('http://localhost:4000/todos/');
       dispatch(setToDoList(response.data));
-      // sethttpState(response.status);
+      setHttpState(response.status);
       console.log('Status :' + response.status);
     } catch (error) {
       console.log('Status :' + error.response.status);
+      setHttpState(error.response.status);
     }
   }
   fetchData();
@@ -36,5 +37,12 @@ export const setToDoList = decoded => {
   return {
     type: SET_TODO_LIST,
     payload: decoded
+  };
+};
+
+export const setHttpState = state => {
+  return {
+    type: SET_HTTP_STATE,
+    payload: state
   };
 };

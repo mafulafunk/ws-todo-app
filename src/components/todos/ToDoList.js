@@ -1,14 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import ToDo from './ToDo';
 import { connect } from 'react-redux';
 import { getToDoList } from '../../actions/todoListActions';
 
-function TodosList({ getToDoList, todos }) {
-  const [httpState] = useState(0);
-
+function TodosList({ getToDoList, todos, httpState }) {
   useEffect(() => {
     getToDoList();
-  }, [getToDoList, todos]);
+  }, [getToDoList]);
 
   function todoList() {
     return todos.map(function(currentTodo, i) {
@@ -36,7 +34,8 @@ function TodosList({ getToDoList, todos }) {
 }
 
 const mapStateToProps = state => ({
-  todos: state.todos.list
+  todos: state.todos.list,
+  httpState: state.todos.httpState
 });
 
 const mapDispatchToProps = { getToDoList };

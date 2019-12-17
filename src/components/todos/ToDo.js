@@ -34,6 +34,8 @@ function ToDo(props) {
   );
 }
 
+const mapStateToProps = null;
+
 const mapDispatchToProps = { deleteToDo };
 
-export default connect(null, mapDispatchToProps)(ToDo);
+export default connect(mapStateToProps, mapDispatchToProps)(ToDo);

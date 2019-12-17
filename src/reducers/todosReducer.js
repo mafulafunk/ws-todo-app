@@ -1,6 +1,7 @@
-import { SET_TODO_LIST } from '../actions/types';
+import { SET_TODO_LIST, SET_HTTP_STATE } from '../actions/types';
 const initialState = {
-  list: []
+  list: [],
+  httpState: 0
 };
 
 export default function(state = initialState, action) {
@@ -10,6 +11,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         list: payload
+      };
+    case SET_HTTP_STATE:
+      return {
+        ...state,
+        httpState: payload
       };
     default:
       return state;
